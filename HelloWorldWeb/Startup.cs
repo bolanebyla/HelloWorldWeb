@@ -27,7 +27,7 @@ namespace HelloWorldWeb
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration config)
         {
             if (env.IsDevelopment())
             {
@@ -46,8 +46,12 @@ namespace HelloWorldWeb
             app.UseRouting();
 
             app.UseAuthorization();
+            Console.WriteLine(config["HelloMessage"]);
 
-            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
         }
     }
 }
